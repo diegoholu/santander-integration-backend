@@ -1,0 +1,23 @@
+{
+  "name": "holu-financiamentos-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "node ./services/santander-teste.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1088.0",
+    "aws-xray-sdk": "^3.3.4",
+    "axios": "^0.26.1",
+    "qs": "^6.10.3",
+    "serverless": "^3.18.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "serverless-offline": "^8.8.0"
+  }
+}

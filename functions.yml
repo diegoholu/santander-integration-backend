@@ -1,0 +1,36 @@
+functions:
+  ping:
+    handler: handler.ping
+    events:
+      - http:
+          path: v1/ping
+          method: get
+          cors: true
+  create:
+    handler: handler.create
+    events:
+      - http:
+          path: v1/iframe/santander
+          method: post
+          cors: true
+  update:
+    handler: handler.update
+    events:
+      - http:
+          path: v1/iframe/santander/{loanRequestId}
+          method: post
+          cors: true
+  getPolicyPrivacy:
+    handler: handler.policyPrivacy
+    events:
+      - http:
+          path: v1/iframe/santander/policy
+          method: get
+          cors: true
+  mockResponse:
+    handler: handler.mockResponse
+    events:
+      - http:
+          path: v1/mock/iframe/santander/{loanRequestId}
+          method: post
+          cors: true

@@ -1,0 +1,338 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Holu | Loan",
+    "version": "1.0.0",
+    "description": "Documentação das apis de finaciamento da holu.",
+    "contact": {
+      "email": "tecnologia@holu.com.br"
+    }
+  },
+  "host": "api.financiamentos.holu.com.br",
+  "basePath": "/dev/v1",
+  "tags": [
+    {
+      "name": "health check",
+      "description": "status of api"
+    },
+    {
+      "name": "iframe",
+      "description": "Everything about loans"
+    },
+    {
+      "name": "mock",
+      "description": "Everything about mocks"
+    }
+  ],
+  "schemes": ["https"],
+  "paths": {
+    "/ping": {
+      "get": {
+        "tags": ["health check"],
+        "summary": "Check api",
+        "description": "",
+        "operationId": "ping",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "{ 'success': 'pong' }"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/iframe/santander": {
+      "post": {
+        "tags": ["iframe"],
+        "summary": "Creates a loan in the db",
+        "description": "",
+        "operationId": "createLoan",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Loan object that needs to be created to the db",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoanCreateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/LoanCreateResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Data not found"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/iframe/santander/{loanRequestId}": {
+      "post": {
+        "tags": ["iframe"],
+        "summary": "Updates a loan in the db with total price",
+        "description": "",
+        "operationId": "updateLoan",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "loanRequestId",
+            "in": "path",
+            "description": "ID of loan that needs to be updated",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Loan object that needs to be updated to the db",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoanUpdateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/LoanUpdateResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Data not found"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/mock/iframe/santander/{loanRequestId}": {
+      "post": {
+        "tags": ["mock"],
+        "summary": "Mock to updates a loan in the db with total price",
+        "description": "",
+        "operationId": "updateLoan",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "loanRequestId",
+            "in": "path",
+            "description": "ID of loan that needs to be updated",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Loan object that needs to be updated to the db",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoanUpdateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/LoanUpdateResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Data not found"
+          },
+          "405": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Error": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "request-id": {
+          "type": "string"
+        }
+      }
+    },
+    "LoanCreateRequest": {
+      "type": "object",
+      "properties": {
+        "simulation": {
+          "type": "object",
+          "properties": {
+            "productCode": {
+              "type": "string",
+              "example": "CDC"
+            },
+            "supplierChannelCode": {
+              "type": "string",
+              "example": "4595450000"
+            },
+            "financedValue": {
+              "type": "integer",
+              "format": "float32",
+              "example": 10000
+            }
+          }
+        },
+        "partnerClient": {
+          "type": "object",
+          "properties": {
+            "documentType": {
+              "type": "string",
+              "example": "CPF"
+            },
+            "documentNumber": {
+              "type": "string",
+              "example": "41057745896"
+            },
+            "birthdayDate": {
+              "type": "string",
+              "format": "date",
+              "example": "1992-07-05"
+            },
+            "mainTelephoneAreaCode": {
+              "type": "string",
+              "example": "11"
+            },
+            "mainTelephoneNumber": {
+              "type": "string",
+              "example": "11974558562"
+            }
+          }
+        },
+        "listTerms": {
+          "type": "object",
+          "properties": {
+            "answerCompanyOffer": {
+              "type": "string",
+              "example": "S"
+            }
+          }
+        },
+        "lgpd": {
+          "type": "object",
+          "properties": {
+            "answerGroupOffer": {
+              "type": "string",
+              "example": "S"
+            },
+            "answerPartnerOffer": {
+              "type": "string",
+              "example": "S"
+            }
+          }
+        }
+      }
+    },
+    "LoanCreateResponse": {
+      "type": "object",
+      "properties": {
+        "loanRequestId": {
+          "type": "string",
+          "format": "uid"
+        }
+      }
+    },
+    "LoanUpdateRequest": {
+      "type": "object",
+      "properties": {
+        "otovoId": {
+          "type": "string",
+          "example": "c71442d1-9ae4-4a9f-96e4-ee1079dc04a3"
+        },
+        "totalPrice": {
+          "type": "integer",
+          "format": "int32",
+          "example": 50000
+        }
+      }
+    },
+    "LoanUpdateResponse": {
+      "type": "object",
+      "properties": {
+        "loan_num_terms": {
+          "type": "integer",
+          "format": "int32",
+          "example": 30
+        },
+        "monthly_gross_price": {
+          "type": "integer",
+          "format": "float",
+          "example": 1580.4
+        },
+        "total_customer_cost": {
+          "type": "integer",
+          "format": "float",
+          "example": 45000
+        },
+        "gross_price": {
+          "type": "integer",
+          "format": "float",
+          "example": 35000
+        },
+        "currency": {
+          "type": "string",
+          "example": "BRL"
+        },
+        "interest_rate_by_year": {
+          "type": "integer",
+          "format": "float",
+          "example": 18.52
+        },
+        "has_accepted_GDPR": {
+          "type": "boolean",
+          "example": true
+        },
+        "has_accepted_contact_messages": {
+          "type": "boolean",
+          "example": true
+        }
+      }
+    }
+  }
+}

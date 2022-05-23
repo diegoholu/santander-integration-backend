@@ -1,0 +1,15 @@
+{
+  "name": "api-financiamentos",
+  "stages": {
+    "staging": {
+      "lambda": {
+        "runtime": "nodejs14.x"
+      }
+    },
+    "production": {
+      "lambda": {
+        "runtime": "nodejs14.x"
+      }
+    }
+  }
+}

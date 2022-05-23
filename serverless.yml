@@ -1,0 +1,51 @@
+console: true
+app: holu-financiamentos-api
+service: holu-financiamentos-api
+org: diegoholu
+frameworkVersion: 3.18.1
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: ${opt:stage}
+  region: us-east-1
+  environment:
+    SANTANDER_BASE_URL_DEV: https://brpiosantanderapihml.viverebrasil.com.br
+  memorySize: 512
+  timeout: 90
+  apiName: ${self:service}
+  apiGateway:
+    description: REST API ${self:service}
+    metrics: true
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - dynamodb:DescribeTable
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource: "arn:aws:dynamodb:us-east-1:*:*"
+plugins:
+  - serverless-offline
+functions: ${file(functions.yml):functions}
+resources:
+  Resources:
+    TodosDynamoDbTable:
+      Type: "AWS::DynamoDB::Table"
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: "santander"
