@@ -92,8 +92,15 @@ Vamos aos primeiros passos...
    ```sh
    npm install
    ```
-
-<p align="right">(<a href="#top">voltar ao topo</a>)</p>
+4. Subir projeto local
+   ```sh
+   serverless offline --stage dev
+   ```
+5. Fazer deploy da aplicação
+   ```sh
+   serverless deploy --stage dev
+   ```
+   <p align="right">(<a href="#top">voltar ao topo</a>)</p>
 
 <!-- CONTACT -->
 
