@@ -8,12 +8,12 @@
   <p align="center">
     Projeto criado para integrar a api de financiamentos do santander com os sistemas da holu
     <br />
-    <a href="https://github.com/diegoholu/holu-financiamentos-api/blob/main/README.md"><strong>Explorar documentação »</strong></a>
+    <a href="https://github.com/diegoholu/santander-integration-backend/blob/main/README.md"><strong>Explorar documentação »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/diegoholu/holu-financiamentos-api/issues">Reportar Bug</a>
+    <a href="https://github.com/diegoholu/santander-integration-backend/issues">Reportar Bug</a>
     ·
-    <a href="https://github.com/diegoholu/holu-financiamentos-api/issues">Solicitar funcionalidades</a>
+    <a href="https://github.com/diegoholu/santander-integration-backend/issues">Solicitar funcionalidades</a>
   </p>
 </div>
 
