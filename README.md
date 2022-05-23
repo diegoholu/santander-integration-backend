@@ -1,22 +1,8 @@
-# holu-financiamentos-api
-
-serverless g -i
-serverless login
-serverless --org=diegoholu
-serverless deploy --stage dev
-serverless deploy --stage dev --update-config
-apiKey = Uj8tYuFDBQ1B4dpTZURL12oARW2JyNlc2aJV2Qyy
-serverless offline --stage dev
-
 <div id="top"></div>
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
   <h3 align="center">holu-santander-financiamentos-api</h3>
 
   <p align="center">
